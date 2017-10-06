@@ -25,20 +25,36 @@ public class CafeTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
 	public void canBrewEspresso() {
+		// given
 		Cafe cafe = new Cafe();
 		cafe.restockBeans(7);
-		
+
+		// when
 		Coffee coffee = cafe.brew(CoffeeType.Espresso);
-		
+
+		// then
 		// it is an espresso!
 		// no milk
 		// that we've got enough coffee
 		assertEquals(CoffeeType.Espresso, coffee.getType());
 		assertEquals(0, coffee.getMilk());
 		assertEquals(7, coffee.getBeans());
+	}
+
+	@Test
+	public void brewingEspressoConsumesBeans() {
+		// given
+		Cafe cafe = new Cafe();
+		cafe.restockBeans(7);
+
+		// when
+		cafe.brew(CoffeeType.Espresso);
+
+		// then
+		assertEquals(0, cafe.getBeansInStock());
 	}
 
 }

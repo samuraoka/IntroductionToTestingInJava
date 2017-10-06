@@ -30,13 +30,17 @@ public class Cafe {
 	}
 
 	// TODO add methods here
-	
+
 	private void requirePositive(int value) {
 		if (value < 1) {
 			throw new IllegalArgumentException();
 		}
 	}
-	
+
+	public int getBeansInStock() {
+		return beansInStock;
+	}
+
 	// TODO add methods here
 
 }
