@@ -10,6 +10,7 @@ import org.junit.Test;
 
 public class CafeTest {
 
+	// TODO remove unnecessary methods
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -55,6 +56,19 @@ public class CafeTest {
 
 		// then
 		assertEquals(0, cafe.getBeansInStock());
+	}
+
+	// TODO add test heres
+
+	// then
+	@Test(expected = IllegalStateException.class)
+	public void latteRequiresMilk() {
+		// given
+		Cafe cafe = new Cafe();
+		cafe.restockBeans(7);
+
+		// when
+		cafe.brew(CoffeeType.Latte);
 	}
 
 }
