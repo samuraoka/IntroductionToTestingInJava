@@ -10,6 +10,10 @@ import org.junit.Test;
 
 public class CafeTest {
 
+	private static final int NO_BEANS = 0;
+	private static final int NO_MILK = 0;
+	private static final int ESPRESSO_BEANS = CoffeeType.Espresso.getRequiredBeans();
+
 	// TODO remove unnecessary methods
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -30,45 +34,71 @@ public class CafeTest {
 	@Test
 	public void canBrewEspresso() {
 		// given
-		Cafe cafe = new Cafe();
-		cafe.restockBeans(7);
+		Cafe cafe = cafeWithBeans();
 
 		// when
 		Coffee coffee = cafe.brew(CoffeeType.Espresso);
 
 		// then
-		// it is an espresso!
-		// no milk
-		// that we've got enough coffee
-		assertEquals(CoffeeType.Espresso, coffee.getType());
-		assertEquals(0, coffee.getMilk());
-		assertEquals(7, coffee.getBeans());
+		assertEquals("Wrong number of beans", ESPRESSO_BEANS, coffee.getBeans());
+		assertEquals("Wrong amount of milk", NO_MILK, coffee.getMilk());
+		assertEquals("Wrong coffee type", CoffeeType.Espresso, coffee.getType());
 	}
 
 	@Test
 	public void brewingEspressoConsumesBeans() {
-		// given
-		Cafe cafe = new Cafe();
-		cafe.restockBeans(7);
+		Cafe cafe = cafeWithBeans();
 
 		// when
 		cafe.brew(CoffeeType.Espresso);
 
 		// then
-		assertEquals(0, cafe.getBeansInStock());
+		assertEquals(NO_BEANS, cafe.getBeansInStock());
 	}
 
-	// TODO add test heres
+	@Test
+	public void canBrewLatte() {
+		Cafe cafe = cafeWithBeans();
+		cafe.restockMilk(CoffeeType.Latte.getRequiredMilk());
+
+		// when
+		Coffee coffee = cafe.brew(CoffeeType.Latte);
+
+		// then
+		assertEquals("Wrong coffee type", CoffeeType.Latte, coffee.getType());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void mustRestockMilk() {
+		// given
+		Cafe cafe = new Cafe();
+		
+		// when
+		cafe.restockMilk(NO_MILK);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void mustRestockBeans() {
+		// given
+		Cafe cafe = new Cafe();
+		
+		// when
+		cafe.restockBeans(NO_BEANS);
+	}
 
 	// then
 	@Test(expected = IllegalStateException.class)
 	public void latteRequiresMilk() {
-		// given
-		Cafe cafe = new Cafe();
-		cafe.restockBeans(7);
+		Cafe cafe = cafeWithBeans();
 
 		// when
 		cafe.brew(CoffeeType.Latte);
+	}
+
+	private Cafe cafeWithBeans() {
+		Cafe cafe = new Cafe();
+		cafe.restockBeans(ESPRESSO_BEANS);
+		return cafe;
 	}
 
 }

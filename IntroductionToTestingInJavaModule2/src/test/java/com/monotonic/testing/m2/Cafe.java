@@ -10,11 +10,13 @@ public class Cafe {
 	private int beansInStock = 0;
 	private int milkInStock = 0;
 
-	// TODO add constructor here
+	public Coffee brew(CoffeeType coffeeType) {
+		return brew(coffeeType, 1);
+	}
 
-	public Coffee brew(CoffeeType coffeeType) { // TODO modify this methods parameter
-		int requiredBeans = coffeeType.getRequiredBeans();
-		int requiredMilk = coffeeType.getRequiredMilk();
+	public Coffee brew(CoffeeType coffeeType, int strength) {
+		int requiredBeans = coffeeType.getRequiredBeans() * strength;
+		int requiredMilk = coffeeType.getRequiredMilk() * strength;
 		if (requiredBeans > beansInStock || requiredMilk > milkInStock) {
 			throw new IllegalStateException("Insufficient beans or milk");
 		}
@@ -29,7 +31,10 @@ public class Cafe {
 		beansInStock += weightInGrams;
 	}
 
-	// TODO add methods here
+	public void restockMilk(int weightInGrams) {
+		requirePositive(weightInGrams);
+		milkInStock += weightInGrams;
+	}
 
 	private void requirePositive(int value) {
 		if (value < 1) {
