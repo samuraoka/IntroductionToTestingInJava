@@ -1,11 +1,8 @@
 package com.monotonic.testing.m2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CafeTest {
@@ -14,27 +11,17 @@ public class CafeTest {
 	private static final int NO_MILK = 0;
 	private static final int ESPRESSO_BEANS = CoffeeType.Espresso.getRequiredBeans();
 
-	// TODO remove unnecessary methods
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+	private Cafe cafe;
 
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
+		cafe = new Cafe();
 	}
 
 	@Test
 	public void canBrewEspresso() {
 		// given
-		Cafe cafe = cafeWithBeans();
+		withBeans();
 
 		// when
 		Coffee coffee = cafe.brew(CoffeeType.Espresso);
@@ -47,7 +34,7 @@ public class CafeTest {
 
 	@Test
 	public void brewingEspressoConsumesBeans() {
-		Cafe cafe = cafeWithBeans();
+		withBeans();
 
 		// when
 		cafe.brew(CoffeeType.Espresso);
@@ -58,7 +45,7 @@ public class CafeTest {
 
 	@Test
 	public void canBrewLatte() {
-		Cafe cafe = cafeWithBeans();
+		withBeans();
 		cafe.restockMilk(CoffeeType.Latte.getRequiredMilk());
 
 		// when
@@ -67,38 +54,30 @@ public class CafeTest {
 		// then
 		assertEquals("Wrong coffee type", CoffeeType.Latte, coffee.getType());
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void mustRestockMilk() {
-		// given
-		Cafe cafe = new Cafe();
-		
 		// when
 		cafe.restockMilk(NO_MILK);
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void mustRestockBeans() {
-		// given
-		Cafe cafe = new Cafe();
-		
 		// when
 		cafe.restockBeans(NO_BEANS);
 	}
 
-	// then
 	@Test(expected = IllegalStateException.class)
 	public void latteRequiresMilk() {
-		Cafe cafe = cafeWithBeans();
+		// given
+		withBeans();
 
 		// when
 		cafe.brew(CoffeeType.Latte);
 	}
 
-	private Cafe cafeWithBeans() {
-		Cafe cafe = new Cafe();
+	private void withBeans() {
 		cafe.restockBeans(ESPRESSO_BEANS);
-		return cafe;
 	}
 
 }
