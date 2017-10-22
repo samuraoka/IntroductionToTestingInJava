@@ -1,4 +1,4 @@
-package com.monotonic.testing.m2;
+package com.monotonic.testing;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,7 +27,7 @@ public class CafeTest {
 		Coffee coffee = cafe.brew(CoffeeType.Espresso);
 
 		// then
-		assertEquals("Wrong number of beans", ESPRESSO_BEANS, coffee.getBeans());
+		assertEquals("Wrong number of beans", ESPRESSO_BEANS, coffee.getBeans()); //TODO change code here
 		assertEquals("Wrong amount of milk", NO_MILK, coffee.getMilk());
 		assertEquals("Wrong coffee type", CoffeeType.Espresso, coffee.getType());
 	}

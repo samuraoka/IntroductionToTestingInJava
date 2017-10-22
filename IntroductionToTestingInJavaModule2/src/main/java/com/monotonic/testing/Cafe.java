@@ -1,4 +1,4 @@
-package com.monotonic.testing.m2;
+package com.monotonic.testing;
 
 /**
  * A coffee shop that can brew coffee and maintains an internal stock of beans
@@ -15,6 +15,8 @@ public class Cafe {
 	}
 
 	public Coffee brew(CoffeeType coffeeType, int strength) {
+		requirePositive(strength);
+
 		int requiredBeans = coffeeType.getRequiredBeans() * strength;
 		int requiredMilk = coffeeType.getRequiredMilk() * strength;
 		if (requiredBeans > beansInStock || requiredMilk > milkInStock) {
@@ -46,6 +48,7 @@ public class Cafe {
 		return beansInStock;
 	}
 
-	// TODO add methods here
-
+	public int getMilkInStock() {
+		return milkInStock;
+	}
 }

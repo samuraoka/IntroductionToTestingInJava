@@ -1,4 +1,4 @@
-package com.monotonic.testing.m2;
+package com.monotonic.testing;
 
 /**
  * Describes the type of coffee that we're going to serve.

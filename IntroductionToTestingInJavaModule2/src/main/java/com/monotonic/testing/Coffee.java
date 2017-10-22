@@ -1,4 +1,4 @@
-package com.monotonic.testing.m2;
+package com.monotonic.testing;
 
 /**
  * An individual coffee that has been served.
@@ -28,5 +28,4 @@ public class Coffee {
 	}
 	
 	//TODO add methods here
-
 }
