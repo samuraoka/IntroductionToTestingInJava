@@ -1,6 +1,9 @@
 package com.monotonic.testing;
 
+import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +30,7 @@ public class CafeTest {
 		Coffee coffee = cafe.brew(CoffeeType.Espresso);
 
 		// then
-		assertEquals("Wrong number of beans", ESPRESSO_BEANS, coffee.getBeans()); //TODO change code here
+		assertThat(coffee, hasProperty("beans", equalTo(ESPRESSO_BEANS)));
 		assertEquals("Wrong amount of milk", NO_MILK, coffee.getMilk());
 		assertEquals("Wrong coffee type", CoffeeType.Espresso, coffee.getType());
 	}
