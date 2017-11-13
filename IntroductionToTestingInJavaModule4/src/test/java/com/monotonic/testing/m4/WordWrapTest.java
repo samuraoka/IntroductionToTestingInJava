@@ -29,4 +29,15 @@ public class WordWrapTest {
 		assertEquals("The S\nleepy\n Brow", result);
 	}
 	
+	@Test
+	public void evenlongerLineShouldWrapThrice() {
+		String result = WordWrap.wrap("The Sleepy Brown Fox", LINE_LENGTH);
+		assertEquals("The S\nleepy\n Brow\nn Fox", result);
+	}
+	
+	@Test
+	public void longLinesDontHaveToBeAMultipleOfLineLength() {
+		String result = WordWrap.wrap("The Sleepy Brown Fox.", LINE_LENGTH);
+		assertEquals("The S\nleepy\n Brow\nn Fox\n.", result);
+	}
 }
