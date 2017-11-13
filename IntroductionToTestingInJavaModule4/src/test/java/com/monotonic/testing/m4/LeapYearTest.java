@@ -25,5 +25,10 @@ public class LeapYearTest {
 	public void leapYearsAreNotDivisibleByOneHundred() {
 		assertFalse(LeapYear.isLeapYear(2100));
 	}
+	
+	@Test
+	public void leapYearsAreDivisibleByFourHundred() {
+		assertTrue(LeapYear.isLeapYear(2400));
+	}
 
 }
