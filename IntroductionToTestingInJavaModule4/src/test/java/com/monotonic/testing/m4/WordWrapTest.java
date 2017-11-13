@@ -22,4 +22,11 @@ public class WordWrapTest {
 		String result = WordWrap.wrap("The", LINE_LENGTH);
 		assertEquals("The", result);
 	}
+	
+	@Test
+	public void longerLineShouldWrapTwice() {
+		String result = WordWrap.wrap("The Sleepy Brow", LINE_LENGTH);
+		assertEquals("The S\nleepy\n Brow", result);
+	}
+	
 }

@@ -6,11 +6,11 @@ public class WordWrap {
 		final StringBuilder accumulator = new StringBuilder();
 		final int length = inputLine.length();
 		
-		accumulator.append(inputLine, 0, Math.min(length, lineLength));
-		
-		if (length > lineLength) {
-			accumulator.append('\n');
-			accumulator.append(inputLine, lineLength, length);
+		for (int i = 0; i < length; i += lineLength) {
+			accumulator.append(inputLine, i, Math.min(length, i + lineLength));
+			if (length > i + lineLength) {
+				accumulator.append('\n');
+			}
 		}
 		
 		return accumulator.toString();
