@@ -12,7 +12,7 @@ public class LeapYearTest {
 	
 	@Test
 	public void LeapYearsAreDivisibleByFour() {
-		assertTrue(LeapYear.isLeap(2020));
+		assertTrue(LeapYear.isLeapYear(2020));
 	}
 
 }
