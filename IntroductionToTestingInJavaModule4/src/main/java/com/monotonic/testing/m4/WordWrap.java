@@ -7,8 +7,9 @@ public class WordWrap {
 		final int length = inputLine.length();
 		
 		for (int i = 0; i < length; i += lineLength) {
-			accumulator.append(inputLine, i, Math.min(length, i + lineLength));
-			if (length > i + lineLength) {
+			int split = i + lineLength;
+			accumulator.append(inputLine, i, Math.min(length, split));
+			if (length > split) {
 				accumulator.append('\n');
 			}
 		}
