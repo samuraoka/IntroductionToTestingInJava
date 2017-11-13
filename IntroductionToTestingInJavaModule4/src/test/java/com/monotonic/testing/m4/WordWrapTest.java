@@ -16,4 +16,10 @@ public class WordWrapTest {
 		String result = WordWrap.wrap("The Sleepy", LINE_LENGTH);
 		assertEquals("The S\nleepy", result);
 	}
+	
+	@Test
+	public void shortLineShouldNotWrap() {
+		String result = WordWrap.wrap("The", LINE_LENGTH);
+		assertEquals("The", result);
+	}
 }
