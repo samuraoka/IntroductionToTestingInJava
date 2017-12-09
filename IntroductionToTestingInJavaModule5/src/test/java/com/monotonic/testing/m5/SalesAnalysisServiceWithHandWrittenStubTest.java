@@ -2,6 +2,7 @@ package com.monotonic.testing.m5;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -27,17 +28,21 @@ public class SalesAnalysisServiceWithHandWrittenStubTest {
 	public void shouldAggregateStoreSales() {
 		// given
 		//
-		// Mockito Mock objects library for java 
+		// Mockito Mock objects library for java
 		// http://mvnrepository.com/artifact/org.mockito/mockito-all/1.10.19
-		SalesRepository stubRepo = mock(SalesRepository.class);
-		when(stubRepo.loadSales()).thenReturn(exampleSales);
-		SalesAnalysisService analysisService = new SalesAnalysisService(stubRepo);
+		//
+		// Mockito - Official Site
+		// http://site.mockito.org/
+		SalesRepository mockRepo = mock(SalesRepository.class);
+		when(mockRepo.loadSales()).thenReturn(exampleSales);
+		SalesAnalysisService analysisService = new SalesAnalysisService(mockRepo);
 
 		// when
 		Map<String, Integer> storeSales = analysisService.tallyStoreSales();
 
 		// then
 		assertEquals(expectedStoreSales, storeSales);
+		verify(mockRepo).loadSales();
 	}
 
 }
