@@ -4,12 +4,22 @@ public class Sale {
 
 	private final String product;
 	private final String store;
-	// TODO
+	private final int number;
+	private final int pricePerItem;
 
 	public Sale(String product, String store, int number, int pricePerItem) {
 		this.product = product;
 		this.store = store;
-		// TODO Auto-generated constructor stub
+		this.number = number;
+		this.pricePerItem = pricePerItem;
+	}
+
+	public int getPricePerItem() {
+		return pricePerItem;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 
 	public String getStore() {
@@ -21,8 +31,13 @@ public class Sale {
 	}
 
 	public int getValue() {
-		return 0;
+		return getNumber() * getPricePerItem();
 	}
 
-	// TODO
+	@Override
+	public String toString() {
+		return "Sale [product=" + product + ", store=" + store + ", number=" + number + ", pricePerItem=" + pricePerItem
+				+ "]";
+	}
+
 }
