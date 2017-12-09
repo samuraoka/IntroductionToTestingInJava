@@ -4,12 +4,18 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SalesReport {
 
 	private final PrintStream output;
 	private final SalesAnalysisService analyser;
 
-	public SalesReport(PrintStream output, SalesAnalysisService analyser) {
+	@Autowired
+	public SalesReport(@Qualifier("output") PrintStream output, SalesAnalysisService analyser) {
 		this.output = output;
 		this.analyser = analyser;
 	}

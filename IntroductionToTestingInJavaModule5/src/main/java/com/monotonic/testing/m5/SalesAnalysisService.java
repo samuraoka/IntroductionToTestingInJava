@@ -6,10 +6,15 @@ import static java.util.stream.Collectors.summingInt;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SalesAnalysisService {
 
 	private final SalesRepository repo;
 
+	@Autowired
 	public SalesAnalysisService(SalesRepository repository) {
 		this.repo = repository;
 	}

@@ -1,6 +1,12 @@
 package com.monotonic.testing.m5;
 
+import java.io.PrintStream;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class ReportRunner {
+
+	private static String fileLocation;
 
 	public static void main(String[] args) {
 		System.out.println("user.dir: " + System.getProperty("user.dir"));
@@ -11,10 +17,23 @@ public class ReportRunner {
 			System.exit(-1);
 		}
 
-		SalesRepository repo = new CsvSalesRepository(args[0]);
-		SalesAnalysisService analyser = new SalesAnalysisService(repo);
-		SalesReport report = new SalesReport(System.out, analyser);
-		report.report();
+		fileLocation = args[0];
+
+		// Spring Context
+		// http://mvnrepository.com/artifact/org.springframework/spring-context
+		try (ClassPathXmlApplicationContext xmlContext = new ClassPathXmlApplicationContext(
+				"com/monotonic/testing/m5/application-context.xml")) {
+			SalesReport report = xmlContext.getBean(SalesReport.class);
+			report.report();
+		}
+	}
+
+	public static PrintStream getOutput() {
+		return System.out;
+	}
+
+	public static String getFileLocation() {
+		return fileLocation;
 	}
 
 }

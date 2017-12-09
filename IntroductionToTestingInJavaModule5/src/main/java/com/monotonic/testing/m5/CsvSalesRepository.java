@@ -5,15 +5,21 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import au.com.bytecode.opencsv.CSVReader;
 
+@Component
 public class CsvSalesRepository implements SalesRepository {
 
 	private final String fileLocation;
 	private PrintStream error;
 	private List<Sale> sales;
 
-	public CsvSalesRepository(String fileLocation) {
+	@Autowired
+	public CsvSalesRepository(@Qualifier("fileLocation") String fileLocation) {
 		this.fileLocation = fileLocation;
 		error = System.out;
 	}
