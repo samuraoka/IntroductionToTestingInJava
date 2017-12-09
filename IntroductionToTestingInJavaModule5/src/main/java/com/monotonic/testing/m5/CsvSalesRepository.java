@@ -4,16 +4,23 @@ import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import com.opencsv.CSVReader;
 
 public class CsvSalesRepository implements SalesRepository {
 
+	private static final Logger LOGGER = Logger.getLogger(CsvSalesRepository.class.getName());
 	private final String fileLocation;
 	private PrintStream error;
 	private List<Sale> sales;
 
-	public CsvSalesRepository(String fileLocation) {
+	@Inject
+	public CsvSalesRepository(@Named("fileLocation") String fileLocation) {
+		LOGGER.log(Level.FINE, "fileLocation: {0}", fileLocation);
 		this.fileLocation = fileLocation;
 		error = System.out;
 	}

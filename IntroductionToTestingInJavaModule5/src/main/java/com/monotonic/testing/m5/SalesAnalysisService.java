@@ -6,10 +6,13 @@ import static java.util.stream.Collectors.summingInt;
 import java.util.Map;
 import java.util.function.Function;
 
+import com.google.inject.Inject;
+
 public class SalesAnalysisService {
 
 	private final SalesRepository repo;
 
+	@Inject
 	public SalesAnalysisService(SalesRepository repository) {
 		this.repo = repository;
 	}

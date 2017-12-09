@@ -4,11 +4,14 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Map;
 
+import com.google.inject.Inject;
+
 public class SalesReport {
 
 	private final PrintStream output;
 	private final SalesAnalysisService analyser;
 
+	@Inject
 	public SalesReport(PrintStream output, SalesAnalysisService analyser) {
 		this.output = output;
 		this.analyser = analyser;
