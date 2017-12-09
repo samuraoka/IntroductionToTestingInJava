@@ -2,16 +2,22 @@ package com.monotonic.testing.m5;
 
 public class Sale {
 
+	private final String product;
+	private final String store;
 	// TODO
 
+	public Sale(String product, String store, int number, int pricePerItem) {
+		this.product = product;
+		this.store = store;
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getStore() {
-		// TODO
-		return null;
+		return store;
 	}
 
 	public String getProduct() {
-		// TODO
-		return null;
+		return product;
 	}
 
 	public int getValue() {

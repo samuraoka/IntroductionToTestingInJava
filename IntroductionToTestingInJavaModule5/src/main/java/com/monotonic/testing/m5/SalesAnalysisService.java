@@ -15,11 +15,11 @@ public class SalesAnalysisService {
 	}
 
 	public Map<String, Integer> tallyStoreSales() {
-		return tallySalesBy(Sale::getProduct);
+		return tallySalesBy(Sale::getStore);
 	}
 
 	public Map<String, Integer> tallyProductSales() {
-		return tallySalesBy(Sale::getStore);
+		return tallySalesBy(Sale::getProduct);
 	}
 
 	private Map<String, Integer> tallySalesBy(Function<Sale, String> classifier) {
