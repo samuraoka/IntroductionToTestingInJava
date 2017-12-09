@@ -12,7 +12,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-public class SalesAnalysisServiceWithHandWrittenStubTest {
+public class SalesAnalysisServiceTest {
 
 	private static final List<Sale> exampleSales = Arrays.asList(new Sale("Apples", "Cardiff", 10, 2),
 			new Sale("Oranges", "Cardiff", 3, 5), new Sale("Bananas", "Cardiff", 6, 20),
