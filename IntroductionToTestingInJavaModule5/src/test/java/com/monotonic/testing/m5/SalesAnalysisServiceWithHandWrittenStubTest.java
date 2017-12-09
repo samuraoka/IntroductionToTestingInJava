@@ -1,6 +1,8 @@
 package com.monotonic.testing.m5;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -24,13 +26,11 @@ public class SalesAnalysisServiceWithHandWrittenStubTest {
 	@Test
 	public void shouldAggregateStoreSales() {
 		// given
-		SalesRepository stubRepo = new SalesRepository() {
-
-			@Override
-			public List<Sale> loadSales() {
-				return exampleSales;
-			}
-		};
+		//
+		// Mockito Mock objects library for java 
+		// http://mvnrepository.com/artifact/org.mockito/mockito-all/1.10.19
+		SalesRepository stubRepo = mock(SalesRepository.class);
+		when(stubRepo.loadSales()).thenReturn(exampleSales);
 		SalesAnalysisService analysisService = new SalesAnalysisService(stubRepo);
 
 		// when
