@@ -1,22 +1,30 @@
 package com.monotonic.testing.m5;
 
-import java.util.HashMap;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
+
 import java.util.Map;
+import java.util.function.Function;
 
 public class SalesAnalysisService {
 
+	private final String fileLocation;
+
 	public SalesAnalysisService(String fileLocation) {
-		// TODO Auto-generated constructor stub
+		this.fileLocation = fileLocation;
 	}
 
 	public Map<String, Integer> tallyStoreSales() {
-		// TODO Auto-generated method stub
-		return new HashMap<>();
+		return tallySalesBy(Sale::getProduct);
 	}
 
 	public Map<String, Integer> tallyProductSales() {
-		// TODO Auto-generated method stub
-		return new HashMap<>();
+		return tallySalesBy(Sale::getStore);
+	}
+
+	private Map<String, Integer> tallySalesBy(Function<Sale, String> classifier) {
+		CsvSalesRepository repo = new CsvSalesRepository(fileLocation);
+		return repo.loadSales().stream().collect(groupingBy(classifier, summingInt(Sale::getValue)));
 	}
 
 }
