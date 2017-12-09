@@ -7,7 +7,7 @@ import java.util.List;
 
 import au.com.bytecode.opencsv.CSVReader;
 
-public class CsvSalesRepository {
+public class CsvSalesRepository implements SalesRepository {
 
 	private final String fileLocation;
 	private PrintStream error;
@@ -17,7 +17,7 @@ public class CsvSalesRepository {
 		this.fileLocation = fileLocation;
 		error = System.out;
 	}
-	
+
 	public void setError(PrintStream error) {
 		this.error = error;
 	}
@@ -25,7 +25,13 @@ public class CsvSalesRepository {
 	private int parseInt(String value) {
 		return Integer.parseInt(value.trim());
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.monotonic.testing.m5.SalesRepository#loadSales()
+	 */
+	@Override
 	public List<Sale> loadSales() {
 		if (sales == null) {
 			sales = new ArrayList<>();

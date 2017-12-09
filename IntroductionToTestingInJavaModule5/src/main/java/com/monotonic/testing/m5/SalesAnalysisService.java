@@ -8,10 +8,10 @@ import java.util.function.Function;
 
 public class SalesAnalysisService {
 
-	private final String fileLocation;
+	private final SalesRepository repo;
 
-	public SalesAnalysisService(String fileLocation) {
-		this.fileLocation = fileLocation;
+	public SalesAnalysisService(SalesRepository repository) {
+		this.repo = repository;
 	}
 
 	public Map<String, Integer> tallyStoreSales() {
@@ -23,7 +23,6 @@ public class SalesAnalysisService {
 	}
 
 	private Map<String, Integer> tallySalesBy(Function<Sale, String> classifier) {
-		CsvSalesRepository repo = new CsvSalesRepository(fileLocation);
 		return repo.loadSales().stream().collect(groupingBy(classifier, summingInt(Sale::getValue)));
 	}
 

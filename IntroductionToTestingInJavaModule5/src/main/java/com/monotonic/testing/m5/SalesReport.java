@@ -9,9 +9,9 @@ public class SalesReport {
 	private final PrintStream output;
 	private final SalesAnalysisService analyser;
 
-	public SalesReport(PrintStream output, String fileLocation) {
+	public SalesReport(PrintStream output, SalesAnalysisService analyser) {
 		this.output = output;
-		this.analyser = new SalesAnalysisService(fileLocation);
+		this.analyser = analyser;
 	}
 
 	public void report() {
