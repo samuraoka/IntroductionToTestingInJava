@@ -14,5 +14,6 @@ public class SalesReportSystemTest {
 		String report = runner.run("src/main/resources/example-sales.csv");
 		
 		assertThat(report, containsString("- London          -    235 -"));
+		assertThat(report, containsString("- Cardiff         -    250 -"));
 	}
 }
